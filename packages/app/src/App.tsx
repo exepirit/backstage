@@ -23,7 +23,7 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/pages/EntityPage';
-import { searchPage } from './components/search/SearchPage';
+import { searchPage } from './components/search/pages/SearchPage';
 import { Root } from './components/Root';
 
 import {
