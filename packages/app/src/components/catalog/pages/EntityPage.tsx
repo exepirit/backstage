@@ -38,8 +38,8 @@ import {
 } from '@backstage/catalog-model';
 
 import { EntityWarningWidget } from '../widgets';
-import { ComponentEntityPage } from './ComponentEntityPage';
-import { GenericEntityPage } from './GenericEntityPage';
+import { componentEntityPage } from './ComponentEntityPage';
+import { genericEntityPage } from './GenericEntityPage';
 
 const apiPage = (
   <EntityLayout>
@@ -183,7 +183,7 @@ const domainPage = (
 export const entityPage = (
   <EntitySwitch>
     <EntitySwitch.Case if={isKind('component')}>
-      <ComponentEntityPage />
+      {componentEntityPage}
     </EntitySwitch.Case>
     <EntitySwitch.Case if={isKind('api')} children={apiPage} />
     <EntitySwitch.Case if={isKind('group')} children={groupPage} />
@@ -192,7 +192,7 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
 
     <EntitySwitch.Case>
-      <GenericEntityPage />
+      {genericEntityPage}
     </EntitySwitch.Case>
   </EntitySwitch>
 );

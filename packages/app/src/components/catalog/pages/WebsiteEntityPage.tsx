@@ -4,10 +4,10 @@ import {
   EntityLayout,
 } from '@backstage/plugin-catalog';
 import React from 'react';
-import { OverviewWidget, TechDocsContent } from '../widgets';
+import { OverviewWidget, techDocsContent } from '../widgets';
 import { Grid } from '@material-ui/core';
 
-export const WebsiteEntityPage = () => (
+export const websiteEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <OverviewWidget />
@@ -25,7 +25,7 @@ export const WebsiteEntityPage = () => (
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
-      <TechDocsContent />
+      {techDocsContent}
     </EntityLayout.Route>
   </EntityLayout>
 );

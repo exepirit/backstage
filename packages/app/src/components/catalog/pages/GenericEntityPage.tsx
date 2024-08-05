@@ -1,15 +1,15 @@
 import { EntityLayout } from '@backstage/plugin-catalog';
 import React from 'react';
-import { EntityWarningWidget, TechDocsContent } from '../widgets';
+import { EntityWarningWidget, techDocsContent } from '../widgets';
 
-export const GenericEntityPage = () => (
+export const genericEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <EntityWarningWidget />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
-      <TechDocsContent />
+      {techDocsContent}
     </EntityLayout.Route>
   </EntityLayout>
 );

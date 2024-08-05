@@ -4,14 +4,14 @@ import {
   EntityDependsOnResourcesCard,
   EntityLayout,
 } from '@backstage/plugin-catalog';
-import { OverviewWidget, TechDocsContent } from '../widgets';
+import { OverviewWidget, techDocsContent } from '../widgets';
 import { Grid } from '@material-ui/core';
 import {
   EntityConsumedApisCard,
   EntityProvidedApisCard,
 } from '@backstage/plugin-api-docs';
 
-export const ServiceEntityPage = () => (
+export const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <OverviewWidget />
@@ -40,7 +40,7 @@ export const ServiceEntityPage = () => (
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
-      <TechDocsContent />
+      {techDocsContent}
     </EntityLayout.Route>
   </EntityLayout>
 );

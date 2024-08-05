@@ -1,21 +1,21 @@
 import { EntitySwitch, isComponentType } from '@backstage/plugin-catalog';
 import React from 'react';
-import { ServiceEntityPage } from './ServiceEntityPage';
-import { GenericEntityPage } from './GenericEntityPage';
-import { WebsiteEntityPage } from './WebsiteEntityPage';
+import { serviceEntityPage } from './ServiceEntityPage';
+import { genericEntityPage } from './GenericEntityPage';
+import { websiteEntityPage } from './WebsiteEntityPage';
 
-export const ComponentEntityPage = () => (
+export const componentEntityPage = (
   <EntitySwitch>
     <EntitySwitch.Case if={isComponentType('service')}>
-      <ServiceEntityPage />
+      {serviceEntityPage}
     </EntitySwitch.Case>
 
     <EntitySwitch.Case if={isComponentType('website')}>
-      <WebsiteEntityPage />
+      {websiteEntityPage}
     </EntitySwitch.Case>
 
     <EntitySwitch.Case>
-      <GenericEntityPage />
+      {genericEntityPage}
     </EntitySwitch.Case>
   </EntitySwitch>
 );
