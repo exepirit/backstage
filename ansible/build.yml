@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Install dependencies
+      command: yarn install
+
+    - name: Run linters
+      command: yarn tsc
+
+    - name: Build bundle
+      command: yarn build:backend
+
+    - name: Build Docker image
+      community.docker.docker_image_build:
+        name: backstage
+        path: ..
+        dockerfile: packages/backend/Dockerfile
+        outputs:
+          - type: oci
+            dest: ../backstage.tar
+
+    - name: Clean build cache
+      file:
+        state: absent
+        path: "../{{ item }}"
+      with_items:
+        - dist-types
+        - packages/app/dist
+        - packages/backend/dist
