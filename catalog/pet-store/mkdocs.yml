@@ -1,7 +1,15 @@
 site_name: 'pet-store'
 
 nav:
-  - Home: index.md
+  - index.md
+  - high_level_architecture/definition.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 plugins:
   - techdocs-core
