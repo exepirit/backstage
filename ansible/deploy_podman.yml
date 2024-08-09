@@ -49,6 +49,12 @@
       become: true
       when: "backstage_container.containers | length > 0"
 
+    - name: Create Backstage TechDocs cache directory
+      file:
+        dest: /var/backstage/techdocs
+        state: directory
+      become: true
+
     - name: Create new Backstage container
       containers.podman.podman_container:
         name: backstage
@@ -58,6 +64,8 @@
         env: "{{ container_env }}"
         ports:
           - "7007:7007/tcp"
+        volumes:
+          - "/var/backstage/techdocs:/app/techdocs"
         restart_policy: "on-failure:5"
       become: true
 

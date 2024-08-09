@@ -28,6 +28,11 @@ backend:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: <file-path>/ca/server.crt
 
+techdocs:
+  publisher:
+    local:
+      publishDirectory: "/app/techdocs"
+
 auth:
   environment: development
   providers:
@@ -57,3 +62,5 @@ catalog:
       target: /app/catalog/org-data/groups.yaml
       rules:
         - allow: [Group]
+    - type: file
+      target: /app/catalog/pet-store/catalog-info.yaml

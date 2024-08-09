@@ -11,21 +11,26 @@
 
 FROM node:18-bookworm-slim
 
-# Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
-    apt-get install -y --no-install-recommends python3 g++ build-essential && \
+    apt-get install -y --no-install-recommends python3 python3-pip g++ build-essential && \
     yarn config set python /usr/bin/python3
 
-# Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
-# in which case you should also move better-sqlite3 to "devDependencies" in package.json.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -y --no-install-recommends libsqlite3-dev
+    apt-get install -y --no-install-recommends openjdk-17-jre-headless curl graphviz
 
-# From here on we use the least-privileged `node` user to run the backend.
+RUN curl -o plantuml.jar -L https://github.com/plantuml/plantuml/releases/download/v1.2024.6/plantuml-1.2024.6.jar && \
+    echo "3e944755cbed59e1ed9332691d92294bef7bbcda  plantuml.jar" | sha1sum -c - && \
+    mv plantuml.jar /opt/plantuml.jar
+RUN echo $'#!/bin/sh\n\njava -jar '/opt/plantuml.jar' ${@}' >> /usr/local/bin/plantuml
+RUN chmod 755 /usr/local/bin/plantuml
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade --break-system-packages pip && \
+    pip install --break-system-packages mkdocs-techdocs-core==1.4.0
+
 USER node
 
 # This should create the app dir as `node`.

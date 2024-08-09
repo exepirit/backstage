@@ -29,11 +29,11 @@ integrations: {}
 proxy: {}
 
 techdocs:
-  builder: 'local' # Alternatives - 'external'
+  builder: 'local'
   generator:
-    runIn: 'docker' # Alternatives - 'local'
+    runIn: 'local'
   publisher:
-    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    type: 'local'
 
 auth:
   providers: {}
