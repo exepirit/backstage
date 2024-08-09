@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: petstore
+  description: The Pet Store system is a full-stack application that provides information and services for various pets available for adoption.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  lifecycle: experimental
+  owner: team-petstore
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petstore-frontend
+spec:
+  type: website
+  system: petstore
+  lifecycle: experimental
+  owner: team-petstore
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petstore-backend
+spec:
+  type: service
+  system: petstore
+  lifecycle: experimental
+  owner: team-petstore

@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-petstore
+  description: The Pet Store team is responsible for developing and maintaining both the frontend website and backend service of the Pet Store application.
+spec:
+  type: team
+  children: []
+  members:
+    - default/exepirit
