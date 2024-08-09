@@ -39,6 +39,11 @@ auth:
           resolvers:
             - resolver: usernameMatchingUserEntityName
 
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
@@ -48,3 +53,7 @@ catalog:
       target: /app/catalog/org-data/users.yaml
       rules:
         - allow: [User]
+    - type: file
+      target: /app/catalog/org-data/groups.yaml
+      rules:
+        - allow: [Group]
