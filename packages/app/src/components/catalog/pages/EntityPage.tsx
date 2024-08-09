@@ -191,8 +191,6 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('system')} children={systemPage} />
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
 
-    <EntitySwitch.Case>
-      {genericEntityPage}
-    </EntitySwitch.Case>
+    <EntitySwitch.Case>{genericEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );

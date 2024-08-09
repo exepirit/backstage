@@ -14,8 +14,6 @@ export const componentEntityPage = (
       {websiteEntityPage}
     </EntitySwitch.Case>
 
-    <EntitySwitch.Case>
-      {genericEntityPage}
-    </EntitySwitch.Case>
+    <EntitySwitch.Case>{genericEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );
