@@ -45,4 +45,6 @@ catalog:
   # on how to get entities into the catalog.
   locations:
     - type: file
-      target: ../../catalog/users/catalog-info.yaml
+      target: /app/catalog/org-data/users.yaml
+      rules:
+        - allow: [User]
