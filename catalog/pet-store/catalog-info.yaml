@@ -18,6 +18,8 @@ spec:
   system: petstore
   lifecycle: experimental
   owner: team-petstore
+  consumesApis:
+    - petstore-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -28,3 +30,17 @@ spec:
   system: petstore
   lifecycle: experimental
   owner: team-petstore
+  providesApis:
+    - petstore-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: petstore-api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-petstore
+  system: petstore
+  definition:
+    $text: https://raw.githubusercontent.com/swagger-api/swagger-petstore/master/src/main/resources/openapi.yaml
