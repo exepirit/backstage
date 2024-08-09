@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { makeStyles } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
@@ -66,7 +67,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+        <SidebarItem icon={MenuBookIcon} to="catalog" text="Catalog" />
         <MyGroupsSidebarItem
           singularTitle="My Group"
           pluralTitle="My Groups"
@@ -75,6 +76,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem icon={TrackChangesIcon} to="tech-radar" text="Tech Radar" />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>
