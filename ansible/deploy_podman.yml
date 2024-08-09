@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars_files:
+    - deploy_podman_vars.yml
   tasks:
     - name: Copy OCI image
       copy:
@@ -47,29 +49,15 @@
       become: true
       when: "backstage_container.containers | length > 0"
 
-    - name: Create configuration directory
-      file:
-        dest: /etc/backstage
-        state: directory
-      become: true
-
-    - name: Deploy configuration
-      template:
-        dest: /etc/backstage/app-config.production.yaml
-        src: ../app-config.production.yaml
-        force: false
-      become: true
-
     - name: Create new Backstage container
       containers.podman.podman_container:
         name: backstage
         state: present
         image: "{{ backstage_image.image.Id }}"
         pull: never
+        env: "{{ container_env }}"
         ports:
           - "7007:7007/tcp"
-        volume:
-          - "/etc/backstage/app-config.production.yaml:/app/app-config.production.yaml:ro"
         restart_policy: "on-failure:5"
       become: true
 
