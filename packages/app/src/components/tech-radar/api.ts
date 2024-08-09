@@ -1,49 +1,31 @@
-import { TechRadarApi, TechRadarLoaderResponse } from "@backstage-community/plugin-tech-radar";
+import {
+  TechRadarApi,
+  TechRadarLoaderResponse,
+} from '@backstage-community/plugin-tech-radar';
+import { radarLayout } from './layout';
 
 export class TechRadarProvdier implements TechRadarApi {
-    async load(id: string | undefined): Promise<TechRadarLoaderResponse> {
-        return {
-            quadrants: [
-                {
-                    id: "techniques",
-                    name: "Techniques"
-                },
-                {
-                    id: "infrastructure",
-                    name: "Infrastructure"
-                },
-                {
-                    id: "libraries",
-                    name: "Libraries & frameworks"
-                },
-                {
-                    id: "languages",
-                    name: "Languages"
-                }
-            ],
-            rings: [
-                {
-                    id: "adopt",
-                    name: "Adopt",
-                    color: "#5BA300"
-                },
-                {
-                    id: "trial",
-                    name: "Trial",
-                    color: "#009EB0"
-                },
-                {
-                    id: "assess",
-                    name: "Assess",
-                    color: "#C7BA00"
-                },
-                {
-                    id: "hold",
-                    name: "Hold",
-                    color: "#E09B96"
-                },
-            ],
-            entries: []
-        }
+  async load(_id: string | undefined): Promise<TechRadarLoaderResponse> {
+    return {
+      ...radarLayout,
+      entries: [
+        {
+          id: 'debian',
+          title: 'Debian',
+          quadrant: 'infrastructure',
+          key: 'debian',
+          description:
+            'Debian is a free and open-source software community project that develops and distributes an influential operating system called the Debian Linux distribution, which consists of various software packages precompiled for installation on personal computers, servers, or other devices.',
+          timeline: [
+            {
+              moved: 0,
+              ringId: 'adopt',
+              date: new Date('2024-08-09'),
+              description: '',
+            },
+          ],
+        },
+      ],
     };
+  }
 }

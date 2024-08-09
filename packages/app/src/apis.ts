@@ -9,7 +9,7 @@ import {
   createApiFactory,
 } from '@backstage/core-plugin-api';
 import { techRadarApiRef } from '@backstage-community/plugin-tech-radar';
-import { TechRadarProvdier } from './components/tech-radar/api';
+import { TechRadarProvdier } from './components/tech-radar';
 
 export const apis: AnyApiFactory[] = [
   createApiFactory({
@@ -18,5 +18,5 @@ export const apis: AnyApiFactory[] = [
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
   }),
   ScmAuth.createDefaultApiFactory(),
-  createApiFactory(techRadarApiRef, new TechRadarProvdier())
+  createApiFactory(techRadarApiRef, new TechRadarProvdier()),
 ];
