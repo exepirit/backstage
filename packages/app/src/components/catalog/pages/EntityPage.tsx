@@ -40,6 +40,7 @@ import {
 import { EntityWarningWidget } from '../widgets';
 import { componentEntityPage } from './ComponentEntityPage';
 import { genericEntityPage } from './GenericEntityPage';
+import { systemEntityPage } from './SystemEntityPage';
 
 const apiPage = (
   <EntityLayout>
@@ -114,53 +115,6 @@ const groupPage = (
   </EntityLayout>
 );
 
-const systemPage = (
-  <EntityLayout>
-    <EntityLayout.Route path="/" title="Overview">
-      <Grid container spacing={3} alignItems="stretch">
-        <EntityWarningWidget />
-        <Grid item md={6}>
-          <EntityAboutCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <EntityCatalogGraphCard variant="gridItem" height={400} />
-        </Grid>
-        <Grid item md={4} xs={12}>
-          <EntityLinksCard />
-        </Grid>
-        <Grid item md={8}>
-          <EntityHasComponentsCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6}>
-          <EntityHasApisCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6}>
-          <EntityHasResourcesCard variant="gridItem" />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route>
-    <EntityLayout.Route path="/diagram" title="Diagram">
-      <EntityCatalogGraphCard
-        variant="gridItem"
-        direction={Direction.TOP_BOTTOM}
-        title="System Diagram"
-        height={700}
-        relations={[
-          RELATION_PART_OF,
-          RELATION_HAS_PART,
-          RELATION_API_CONSUMED_BY,
-          RELATION_API_PROVIDED_BY,
-          RELATION_CONSUMES_API,
-          RELATION_PROVIDES_API,
-          RELATION_DEPENDENCY_OF,
-          RELATION_DEPENDS_ON,
-        ]}
-        unidirectional={false}
-      />
-    </EntityLayout.Route>
-  </EntityLayout>
-);
-
 const domainPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
@@ -188,7 +142,7 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('api')} children={apiPage} />
     <EntitySwitch.Case if={isKind('group')} children={groupPage} />
     <EntitySwitch.Case if={isKind('user')} children={userPage} />
-    <EntitySwitch.Case if={isKind('system')} children={systemPage} />
+    <EntitySwitch.Case if={isKind('system')} children={systemEntityPage} />
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
 
     <EntitySwitch.Case>{genericEntityPage}</EntitySwitch.Case>
