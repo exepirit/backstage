@@ -1,0 +1,36 @@
+model {
+    petstore = system 'Pet Store' {
+        description 'A comprehensive API for managing a virtual pet store, supporting user registration, pet listing, order placement, and management.'
+
+        frontend = webapp 'Frontend' {
+            description 'A web application built using TypeScript and React, providing the user interface for managing interactions with the Pet Store system.'
+            technology 'TypeScript, React'
+        }
+        
+        backend = service 'Backend' {
+            description 'A service implemented in Python, handling all business logic, data processing, and providing RESTful APIs for interacting with both the frontend and the database.'
+            technology 'Python'
+        }
+
+        db = database 'Database' {
+            description 'A PostgreSQL-based database storing all necessary information regarding users, pets, orders, etc.'
+            technology 'PostgreSQL'
+        }
+
+        frontend -> backend 'Uses REST API'
+        backend -> db 'Reads from / writes to'
+    }
+
+    user = user 'User'
+    user -> frontend 'Uses'
+}
+
+views {
+    view system {
+        include *
+    }
+
+    view containers of petstore {
+        include petstore.*
+    }
+}
