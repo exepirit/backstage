@@ -17,7 +17,9 @@ export const catalogModuleNotifications = createBackendModule({
         catalog: catalogProcessingExtensionPoint,
       },
       async init({ logger, notificationService, catalog }) {
-        catalog.addProcessor(new NotificationsSendProcessor(logger, notificationService));
+        catalog.addProcessor(
+          new NotificationsSendProcessor(logger, notificationService),
+        );
       },
     });
   },
