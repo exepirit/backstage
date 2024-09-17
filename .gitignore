@@ -56,3 +56,4 @@ e2e-test-report/
 venv/
 backstage.tar
 ansible/deploy_podman_vars.yml
+packages/backend/databases/

@@ -49,4 +49,5 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs/alpha'));
 // notifications
 backend.add(import('@backstage/plugin-notifications-backend'));
 
+backend.add(import('backstage-plugin-catalog-backend-module-notifications'));
 backend.start();
